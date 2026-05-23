@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { stripe } from '@/lib/stripe'
 import type Stripe from 'stripe'
 
-export const config = { api: { bodyParser: false } }
+export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
 
 async function getRawBody(req: NextRequest): Promise<Buffer> {
   const chunks: Uint8Array[] = []
@@ -19,13 +20,10 @@ async function getRawBody(req: NextRequest): Promise<Buffer> {
 export async function POST(req: NextRequest) {
   const sig = req.headers.get('stripe-signature')
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET
-
   if (!sig || !webhookSecret) {
     return NextResponse.json({ error: 'Missing signature or secret' }, { status: 400 })
   }
-
   let event: Stripe.Event
-
   try {
     const rawBody = await getRawBody(req)
     event = stripe.webhooks.constructEvent(rawBody, sig, webhookSecret)
@@ -34,7 +32,6 @@ export async function POST(req: NextRequest) {
     console.error('Webhook signature verification failed:', message)
     return NextResponse.json({ error: `Webhook error: ${message}` }, { status: 400 })
   }
-
   try {
     switch (event.type) {
       case 'checkout.session.completed': {
@@ -47,7 +44,6 @@ export async function POST(req: NextRequest) {
         // await db.user.update({ where: { stripeCustomerId: customerId }, data: { plan, subscriptionId } })
         break
       }
-
       case 'customer.subscription.updated': {
         const sub = event.data.object as Stripe.Subscription
         const plan = sub.metadata?.plan
@@ -56,7 +52,6 @@ export async function POST(req: NextRequest) {
         // TODO: Update subscription status in your database
         break
       }
-
       case 'customer.subscription.deleted': {
         const sub = event.data.object as Stripe.Subscription
         const customerId = sub.customer as string
@@ -64,14 +59,12 @@ export async function POST(req: NextRequest) {
         // TODO: Downgrade user in your database
         break
       }
-
       case 'invoice.payment_succeeded': {
         const invoice = event.data.object as Stripe.Invoice
         console.log(`💸 Payment succeeded: invoice=${invoice.id}, amount=${invoice.amount_paid}`)
         // TODO: Log payment, send receipt email
         break
       }
-
       case 'invoice.payment_failed': {
         const invoice = event.data.object as Stripe.Invoice
         const customerId = invoice.customer as string
@@ -79,7 +72,6 @@ export async function POST(req: NextRequest) {
         // TODO: Email user about failed payment, flag account
         break
       }
-
       case 'payment_intent.succeeded': {
         const pi = event.data.object as Stripe.PaymentIntent
         if (pi.metadata?.type === 'deal_payment') {
@@ -91,7 +83,6 @@ export async function POST(req: NextRequest) {
         }
         break
       }
-
       default:
         console.log(`Unhandled event type: ${event.type}`)
     }
@@ -99,6 +90,5 @@ export async function POST(req: NextRequest) {
     console.error('Webhook handler error:', err)
     return NextResponse.json({ error: 'Handler error' }, { status: 500 })
   }
-
   return NextResponse.json({ received: true })
 }
