@@ -41,7 +41,6 @@ const floatingEmojis: FloatingEmoji[] = [
   },
 ]
 
-const trustedBrands = ['LUSH', 'FabFitFun', 'Gymshark', 'Revolve', 'Sephora']
 
 export default function CTA() {
   return (
@@ -72,7 +71,7 @@ export default function CTA() {
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center gap-0">
         {/* Eyebrow badge */}
         <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white/90 text-sm font-semibold px-5 py-2 rounded-full mb-8 border border-white/20">
-          🔥 Join 10,000+ creators already earning
+          ✨ Now in private beta — accepting founding members
         </div>
 
         {/* Headline */}
@@ -119,22 +118,6 @@ export default function CTA() {
           Free to start. No credit card required. Cancel anytime.
         </p>
 
-        {/* Divider + trusted brands */}
-        <div className="mt-16 pt-8 border-t border-white/10 w-full">
-          <p className="text-purple-300/60 text-xs uppercase tracking-[0.2em] font-semibold mb-5">
-            Trusted by teams at
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
-            {trustedBrands.map((brand) => (
-              <span
-                key={brand}
-                className="text-white/35 text-sm font-black tracking-wider uppercase hover:text-white/70 transition-colors duration-200 cursor-default"
-              >
-                {brand}
-              </span>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   )

@@ -68,7 +68,7 @@ function DashboardMockup() {
             {[
               { label: 'Earnings', value: '$4,280', color: 'from-violet-500 to-purple-600', icon: '💰' },
               { label: 'Active Deals', value: '5', color: 'from-pink-500 to-rose-500', icon: '🤝' },
-              { label: 'Avg Rating', value: '4.9★', color: 'from-amber-400 to-orange-500', icon: '⭐' },
+              { label: 'Avg Rating', value: '—', color: 'from-amber-400 to-orange-500', icon: '⭐' },
             ].map((stat) => (
               <div key={stat.label} className={`rounded-xl bg-gradient-to-br ${stat.color} p-2 text-white`}>
                 <div className="text-sm">{stat.icon}</div>
@@ -82,8 +82,8 @@ function DashboardMockup() {
           <div className="text-xs font-semibold text-gray-600 mb-2">Active Deals</div>
           <div className="space-y-2">
             {[
-              { brand: 'LUSH Cosmetics', type: 'UGC Video', value: '$2,400', status: 'In Progress', color: 'bg-violet-100 text-violet-700' },
-              { brand: 'Gymshark', type: 'Reels x3', value: '$1,800', status: 'Review', color: 'bg-amber-100 text-amber-700' },
+              { brand: 'Beauty Brand Co.', type: 'UGC Video', value: '$2,400', status: 'In Progress', color: 'bg-violet-100 text-violet-700' },
+              { brand: 'Fitness Apparel Co.', type: 'Reels x3', value: '$1,800', status: 'Review', color: 'bg-amber-100 text-amber-700' },
             ].map((deal) => (
               <div key={deal.brand} className="bg-white rounded-xl p-2.5 flex items-center gap-2 shadow-sm">
                 <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-violet-100 to-pink-100 flex items-center justify-center text-sm">🏷️</div>
@@ -140,9 +140,9 @@ function DealsMockup() {
           </div>
           <div className="space-y-2">
             {[
-              { brand: 'Revolve', budget: '$3,500', type: 'Fashion haul + Reel', match: '98%', niche: '👗 Fashion', hot: true },
-              { brand: 'Sephora', budget: '$2,000', type: 'Product review video', match: '94%', niche: '💄 Beauty', hot: false },
-              { brand: 'Gymshark', budget: '$1,800', type: '3x Instagram Reels', match: '91%', niche: '💪 Fitness', hot: false },
+              { brand: 'Fashion Brand Co.', budget: '$3,500', type: 'Fashion haul + Reel', match: '98%', niche: '👗 Fashion', hot: true },
+              { brand: 'Beauty Brand Co.', budget: '$2,000', type: 'Product review video', match: '94%', niche: '💄 Beauty', hot: false },
+              { brand: 'Fitness Apparel Co.', budget: '$1,800', type: '3x Instagram Reels', match: '91%', niche: '💪 Fitness', hot: false },
             ].map((deal) => (
               <div key={deal.brand} className="bg-white rounded-xl p-2.5 flex items-center gap-2 shadow-sm">
                 <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-violet-100 to-pink-100 flex items-center justify-center text-sm">{deal.niche.split(' ')[0]}</div>
@@ -194,10 +194,10 @@ function NotificationsMockup() {
           </div>
           <div className="space-y-2">
             {[
-              { emoji: '🎉', title: 'WE GOT A DEAL!', body: 'LUSH Cosmetics just accepted your pitch. $2,400 incoming! 💰', time: '2m ago', type: 'deal', bg: 'bg-gradient-to-r from-violet-50 to-pink-50 border-violet-200' },
-              { emoji: '💬', title: 'New message from Gymshark', body: 'Hey! We love your content. Can we hop on a quick call?', time: '18m ago', type: 'msg', bg: 'bg-white border-gray-200' },
-              { emoji: '🎯', title: '3 new deals match your profile', body: 'Sephora, Revolve, and FabFitFun are looking for creators like you.', time: '1h ago', type: 'match', bg: 'bg-white border-gray-200' },
-              { emoji: '💸', title: 'Payment received!', body: 'FabFitFun sent you $850. Way to keep growing! 🚀', time: '3h ago', type: 'pay', bg: 'bg-white border-gray-200' },
+              { emoji: '🎉', title: 'WE GOT A DEAL!', body: 'Beauty Brand Co. just accepted your pitch. $2,400 incoming! 💰', time: '2m ago', type: 'deal', bg: 'bg-gradient-to-r from-violet-50 to-pink-50 border-violet-200' },
+              { emoji: '💬', title: 'New message from a brand', body: 'Hey! We love your content. Can we hop on a quick call?', time: '18m ago', type: 'msg', bg: 'bg-white border-gray-200' },
+              { emoji: '🎯', title: '3 new deals match your profile', body: 'Beauty, fashion, and wellness brands are looking for creators like you.', time: '1h ago', type: 'match', bg: 'bg-white border-gray-200' },
+              { emoji: '💸', title: 'Payment received!', body: 'Wellness Brand Co. sent you $850. Way to keep growing! 🚀', time: '3h ago', type: 'pay', bg: 'bg-white border-gray-200' },
             ].map((n) => (
               <div key={n.title} className={`rounded-xl p-2.5 flex gap-2 border ${n.bg}`}>
                 <div className="text-base leading-none mt-0.5">{n.emoji}</div>

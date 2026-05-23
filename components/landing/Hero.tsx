@@ -10,11 +10,6 @@ const floatingEmojis = [
   { emoji: '📱', className: 'bottom-40 left-[12%] text-3xl animate-float', delay: '1.5s' },
 ]
 
-const stats = [
-  { icon: '⚡', label: '$2.4M+ paid to creators' },
-  { icon: '🎯', label: '18,000+ deals closed' },
-  { icon: '⭐', label: '4.9/5 avg rating' },
-]
 
 export default function Hero() {
   return (
@@ -115,64 +110,10 @@ export default function Hero() {
           </Link>
         </div>
 
-        {/* Social proof text */}
-        <p className="text-sm text-gray-500 font-medium animate-slide-up">
-          Join{' '}
-          <span className="text-brand-purple font-bold">12,000+ creators</span> and{' '}
-          <span className="text-brand-pink font-bold">1,500+ brands</span> already closing deals
+        {/* Beta badge */}
+        <p className="text-sm text-gray-500 font-medium animate-slide-up px-4 py-2 rounded-full bg-white border border-purple-100 shadow-card">
+          ✨ Now in private beta — accepting founding members
         </p>
-
-        {/* Stat pills */}
-        <div className="flex flex-wrap justify-center gap-3 animate-slide-up">
-          {stats.map(({ icon, label }) => (
-            <div
-              key={label}
-              className="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-purple-100 shadow-card text-sm font-semibold text-gray-700 hover:shadow-card-hover hover:border-purple-200 transition-all duration-200"
-            >
-              <span aria-hidden="true">{icon}</span>
-              {label}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Deal notification card */}
-      <div className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 mb-8 flex justify-center animate-slide-up">
-        <div
-          className="inline-flex items-center gap-4 px-5 py-4 rounded-2xl shadow-card-hover border border-white/60"
-          style={{
-            background: 'rgba(255, 255, 255, 0.85)',
-            backdropFilter: 'blur(20px)',
-            WebkitBackdropFilter: 'blur(20px)',
-          }}
-        >
-          {/* Avatar placeholder */}
-          <div
-            className="w-11 h-11 rounded-full flex items-center justify-center text-xl shrink-0 shadow-brand"
-            style={{
-              background: 'linear-gradient(135deg, #7C3AED 0%, #EC4899 100%)',
-            }}
-          >
-            🎉
-          </div>
-
-          <div className="text-left">
-            <p className="text-xs font-bold uppercase tracking-widest text-brand-purple mb-0.5">
-              WE GOT A DEAL!
-            </p>
-            <p className="text-sm font-semibold text-gray-800 leading-snug">
-              Alyssa just landed a{' '}
-              <span className="text-brand-purple font-black">$2,400</span> collab with{' '}
-              <span className="text-brand-pink font-bold">LUSH Cosmetics</span>
-            </p>
-          </div>
-
-          {/* Live pulse indicator */}
-          <div className="flex items-center gap-1.5 shrink-0 ml-2">
-            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-xs font-semibold text-green-600">Live</span>
-          </div>
-        </div>
       </div>
 
       {/* Bottom fade-out for scroll affordance */}
