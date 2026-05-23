@@ -1,6 +1,25 @@
 'use client'
 
 import Link from 'next/link'
+import { useState } from 'react'
+
+async function startCheckout(plan: 'creator' | 'business', setLoading: (v: boolean) => void) {
+  setLoading(true)
+  try {
+    const res = await fetch('/api/stripe/checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ plan }),
+    })
+    const { url, error } = await res.json()
+    if (error) { alert(error); return }
+    if (url) window.location.href = url
+  } catch {
+    alert('Something went wrong. Please try again.')
+  } finally {
+    setLoading(false)
+  }
+}
 
 const checkIcon = (
   <svg
@@ -93,6 +112,7 @@ const plans: Plan[] = [
 ]
 
 function FeaturedCard({ plan }: { plan: Plan }) {
+  const [loading, setLoading] = useState(false)
   return (
     /* gradient-border is defined in globals.css using position:relative + ::before pseudo-element */
     <div className="gradient-border shadow-brand md:-mt-6 md:mb-6 z-10">
@@ -157,29 +177,26 @@ function FeaturedCard({ plan }: { plan: Plan }) {
         </ul>
 
         {/* CTA */}
-        <Link
-          href={plan.href}
-          className="relative z-10 w-full text-center px-6 py-3.5 rounded-full text-white text-sm font-black tracking-wide shadow-brand hover:shadow-brand-lg hover:scale-[1.03] transition-all duration-200 overflow-hidden group"
-          style={{
-            background: 'linear-gradient(135deg, #7C3AED 0%, #EC4899 100%)',
-          }}
+        <button
+          onClick={() => startCheckout('creator', setLoading)}
+          disabled={loading}
+          className="relative z-10 w-full text-center px-6 py-3.5 rounded-full text-white text-sm font-black tracking-wide shadow-brand hover:shadow-brand-lg hover:scale-[1.03] transition-all duration-200 overflow-hidden group disabled:opacity-70 disabled:cursor-not-allowed"
+          style={{ background: 'linear-gradient(135deg, #7C3AED 0%, #EC4899 100%)' }}
         >
-          <span className="relative z-10">{plan.cta}</span>
-          {/* shimmer on hover */}
+          <span className="relative z-10">{loading ? 'Redirecting...' : plan.cta}</span>
           <span
             className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-            style={{
-              background:
-                'linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.25) 50%, transparent 70%)',
-            }}
+            style={{ background: 'linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.25) 50%, transparent 70%)' }}
           />
-        </Link>
+        </button>
+        <p className="text-center text-xs text-gray-400 mt-2 relative z-10">14-day free trial · No credit card required</p>
       </div>
     </div>
   )
 }
 
 function BusinessCard({ plan }: { plan: Plan }) {
+  const [loading, setLoading] = useState(false)
   return (
     <div className="rounded-2xl border border-gray-200 bg-white p-8 flex flex-col shadow-card hover:shadow-card-hover hover:-translate-y-1.5 transition-all duration-300">
       <h3 className="text-xl font-black text-gray-900 mb-1">{plan.name}</h3>
@@ -194,22 +211,21 @@ function BusinessCard({ plan }: { plan: Plan }) {
 
       <ul className="space-y-3 flex-1 mb-8">
         {plan.features.map((feat) => (
-          <li
-            key={feat}
-            className="flex items-start gap-3 text-sm text-gray-700 font-medium"
-          >
+          <li key={feat} className="flex items-start gap-3 text-sm text-gray-700 font-medium">
             {checkIcon}
             <span>{feat}</span>
           </li>
         ))}
       </ul>
 
-      <Link
-        href={plan.href}
-        className="w-full text-center px-6 py-3.5 rounded-full bg-gray-900 text-white text-sm font-black tracking-wide hover:bg-violet-700 hover:scale-[1.02] transition-all duration-200"
+      <button
+        onClick={() => startCheckout('business', setLoading)}
+        disabled={loading}
+        className="w-full text-center px-6 py-3.5 rounded-full bg-gray-900 text-white text-sm font-black tracking-wide hover:bg-violet-700 hover:scale-[1.02] transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
       >
-        {plan.cta}
-      </Link>
+        {loading ? 'Redirecting...' : plan.cta}
+      </button>
+      <p className="text-center text-xs text-gray-400 mt-2">14-day free trial included</p>
     </div>
   )
 }

@@ -9,6 +9,7 @@ const navItems = [
   { href: '/notifications', label: 'Notifications', icon: '🔔', badge: 4 },
   { href: '/discover', label: 'Discover', icon: '🔍' },
   { href: '/profile', label: 'My Profile', icon: '👤' },
+  { href: '/billing', label: 'Billing', icon: '💳' },
 ]
 
 const bottomItems = [
@@ -101,10 +102,13 @@ export default function Sidebar() {
         ))}
         <div className="mt-3 mx-1 p-3 rounded-xl bg-gradient-to-br from-violet-600 to-pink-500 text-white">
           <div className="text-xs font-semibold mb-1">Upgrade to Business</div>
-          <div className="text-xs opacity-80 mb-2">Unlock unlimited deal visibility</div>
-          <button className="w-full bg-white text-violet-700 text-xs font-bold py-1.5 rounded-lg hover:bg-violet-50 transition-colors">
-            Upgrade $49/mo
-          </button>
+          <div className="text-xs opacity-80 mb-2">Unlimited campaigns + creator search</div>
+          <Link
+            href="/billing"
+            className="block w-full bg-white text-violet-700 text-xs font-bold py-1.5 rounded-lg hover:bg-violet-50 transition-colors text-center"
+          >
+            Upgrade $49/mo →
+          </Link>
         </div>
       </div>
     </aside>

@@ -9,6 +9,7 @@ const titles: Record<string, { title: string; subtitle: string }> = {
   '/notifications': { title: 'Notifications', subtitle: 'All the good stuff happening for you 🔔' },
   '/discover': { title: 'Discover', subtitle: 'Find brands that match your vibe ✨' },
   '/profile': { title: 'My Profile', subtitle: 'Make brands swipe right 💜' },
+  '/billing': { title: 'Billing', subtitle: 'Manage your subscription & payments 💳' },
 }
 
 const mobileNav = [
@@ -17,6 +18,7 @@ const mobileNav = [
   { href: '/notifications', icon: '🔔', badge: true },
   { href: '/discover', icon: '🔍' },
   { href: '/profile', icon: '👤' },
+  { href: '/billing', icon: '💳' },
 ]
 
 export default function Header() {
