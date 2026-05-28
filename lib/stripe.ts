@@ -14,17 +14,24 @@ export const PLANS = {
     description: 'For creators ready to monetize',
   },
   business: {
-    name: 'Business',
+    name: 'Brand Standard',
     price: '$49',
     interval: 'month',
     priceId: process.env.STRIPE_PRICE_BUSINESS_MONTHLY!,
-    description: 'For brands serious about UGC',
+    description: 'Full marketplace access for brands',
+  },
+  brand_pro: {
+    name: 'Brand Pro',
+    price: '$99',
+    interval: 'month',
+    priceId: process.env.STRIPE_PRICE_BRAND_PRO_MONTHLY!,
+    description: 'Unlimited campaigns + AI matching',
   },
 } as const
 
 export type PlanKey = keyof typeof PLANS
 
-export const PLATFORM_FEE_PERCENT = Number(process.env.NEXT_PUBLIC_PLATFORM_FEE ?? 0.029)
+export const PLATFORM_FEE_PERCENT = Number(process.env.NEXT_PUBLIC_PLATFORM_FEE ?? 0.09)
 
 export function calculateDealFee(dealAmountCents: number) {
   const fee = Math.round(dealAmountCents * PLATFORM_FEE_PERCENT)

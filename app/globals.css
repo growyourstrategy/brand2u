@@ -3,9 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 15, 15, 26;
-  --background-start-rgb: 255, 255, 255;
-  --background-end-rgb: 250, 248, 255;
+  --b2u-pink: #FF4D6D;
+  --b2u-pink-dark: #CC1A3A;
+  --b2u-purple: #7B2FFF;
+  --b2u-teal: #00C9A7;
+  --b2u-black: #0A0A0F;
+  --b2u-off-black: #14141C;
+  --b2u-border: rgba(255,255,255,0.08);
 }
 
 * {
@@ -19,9 +23,9 @@ html {
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-start-rgb));
-  font-family: var(--font-inter), system-ui, sans-serif;
+  color: #ffffff;
+  background: #0A0A0F;
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -30,10 +34,10 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #14141C;
 }
 ::-webkit-scrollbar-thumb {
-  background: #7C3AED;
+  background: #FF4D6D;
   border-radius: 3px;
 }
 

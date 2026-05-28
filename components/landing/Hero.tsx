@@ -2,128 +2,122 @@
 
 import Link from 'next/link'
 
-const floatingEmojis = [
-  { emoji: '🎯', className: 'top-24 left-[8%] text-3xl animate-float', delay: '0s' },
-  { emoji: '💰', className: 'top-32 right-[10%] text-4xl animate-float', delay: '1s' },
-  { emoji: '✨', className: 'top-[40%] left-[4%] text-2xl animate-float', delay: '2s' },
-  { emoji: '🤝', className: 'top-[55%] right-[6%] text-3xl animate-float', delay: '0.5s' },
-  { emoji: '📱', className: 'bottom-40 left-[12%] text-3xl animate-float', delay: '1.5s' },
+const stats = [
+  { num: '30', suffix: '×', label: 'Cheaper than agencies' },
+  { num: '$49', suffix: '', label: 'Per month to start' },
+  { num: '8K', suffix: '+', label: 'Verified creators' },
+  { num: '9', suffix: '%', label: 'Platform fee per deal' },
 ]
-
 
 export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-16"
-      style={{
-        background: 'linear-gradient(180deg, #ffffff 0%, #faf5ff 60%, #f3e8ff 100%)',
-      }}
+      className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden px-4"
+      style={{ background: '#0A0A0F', paddingTop: '8rem', paddingBottom: '5rem' }}
     >
-      {/* Subtle radial glow behind content */}
+      {/* Radial glow */}
       <div
-        className="absolute inset-0 pointer-events-none"
-        aria-hidden="true"
+        className="absolute pointer-events-none"
         style={{
-          background:
-            'radial-gradient(ellipse 70% 50% at 50% 40%, rgba(124,58,237,0.08) 0%, transparent 70%)',
+          top: '-20%',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '900px',
+          height: '900px',
+          background: 'radial-gradient(circle, rgba(255,77,109,0.15) 0%, transparent 70%)',
         }}
+        aria-hidden="true"
+      />
+      {/* Bottom separator line */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-px pointer-events-none"
+        style={{ background: 'linear-gradient(90deg, transparent, rgba(255,77,109,0.4), transparent)' }}
+        aria-hidden="true"
       />
 
-      {/* Floating emoji decorations */}
-      {floatingEmojis.map(({ emoji, className, delay }) => (
-        <span
-          key={emoji}
-          className={`absolute select-none pointer-events-none hidden sm:block ${className}`}
-          style={{ animationDelay: delay }}
-          aria-hidden="true"
+      <div className="relative z-10 flex flex-col items-center max-w-4xl mx-auto">
+        {/* Eyebrow */}
+        <p
+          className="text-[11px] font-semibold tracking-[0.18em] uppercase mb-6 animate-slide-up"
+          style={{ color: '#FF4D6D', fontFamily: 'var(--font-syne)' }}
         >
-          {emoji}
-        </span>
-      ))}
-
-      {/* Main content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center gap-8">
-
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-purple-200 shadow-card text-sm font-semibold text-brand-purple animate-slide-up">
-          <span className="w-2 h-2 rounded-full bg-brand-purple animate-pulse" />
-          The #1 Creator–Brand Collab Platform
-        </div>
+          ROI for brands
+        </p>
 
         {/* Headline */}
-        <h1 className="text-5xl md:text-7xl font-black leading-[1.05] tracking-tight text-gray-900 animate-slide-up">
-          Where Creators
-          <br />
-          &amp; Brands{' '}
-          <span
-            style={{
-              background: 'linear-gradient(135deg, #7C3AED 0%, #EC4899 60%, #F59E0B 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}
-          >
-            Fall in Love
-          </span>{' '}
-          💜
+        <h1
+          className="font-black leading-[1.0] tracking-tight max-w-[820px] mb-6 animate-slide-up"
+          style={{
+            fontFamily: 'var(--font-syne)',
+            color: '#FFFFFF',
+            fontSize: 'clamp(2.8rem, 6vw, 5.5rem)',
+            letterSpacing: '-2px',
+          }}
+        >
+          Stop paying agency<br />
+          prices.{' '}
+          <em className="not-italic" style={{ color: '#FF4D6D' }}>Start getting</em>
+          <br />agency results.
         </h1>
 
         {/* Subheadline */}
-        <p className="text-lg md:text-xl text-gray-500 font-medium max-w-2xl leading-relaxed animate-slide-up">
-          Stop cold-pitching. Start closing.{' '}
-          <span className="text-gray-700 font-semibold">brand2u</span> connects UGC creators with
-          brands for real deals, real money, and real results.
+        <p
+          className="text-lg md:text-xl leading-relaxed max-w-[560px] mb-12 animate-slide-up"
+          style={{ color: 'rgba(255,255,255,0.6)', fontWeight: 300 }}
+        >
+          Brand2u connects you directly with verified creators who actually move product — at a fraction of what you&apos;re spending now.
         </p>
 
         {/* CTA buttons */}
-        <div className="flex flex-col sm:flex-row items-center gap-4 animate-slide-up">
-          <Link
-            href="/dashboard"
-            className="group relative px-8 py-4 rounded-full text-white font-bold text-lg shadow-brand hover:shadow-brand-lg hover:scale-105 transition-all duration-200 overflow-hidden"
-            style={{
-              background: 'linear-gradient(135deg, #7C3AED 0%, #EC4899 100%)',
-            }}
-          >
-            <span className="relative z-10">Get My Creator Profile</span>
-            {/* Shimmer overlay */}
-            <span
-              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              style={{
-                background:
-                  'linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.25) 50%, transparent 70%)',
-              }}
-            />
-          </Link>
-
+        <div className="flex flex-col sm:flex-row items-center gap-4 mb-16 animate-slide-up">
           <Link
             href="/dashboard?mode=brand"
-            className="relative px-8 py-4 rounded-full font-bold text-lg transition-all duration-200 hover:scale-105"
+            className="px-8 py-4 rounded-full text-white font-bold text-lg transition-all hover:scale-105 hover:-translate-y-0.5"
+            style={{ background: '#FF4D6D', fontFamily: 'var(--font-syne)' }}
+          >
+            Post a Campaign →
+          </Link>
+          <a
+            href="#calculator"
+            className="px-8 py-4 rounded-full text-white font-bold text-lg transition-all hover:scale-105"
             style={{
-              background:
-                'linear-gradient(white, white) padding-box, linear-gradient(135deg, #7C3AED, #EC4899) border-box',
-              border: '2.5px solid transparent',
-              color: '#7C3AED',
+              border: '2px solid rgba(255,255,255,0.2)',
+              background: 'transparent',
+              fontFamily: 'var(--font-syne)',
             }}
           >
-            Post a Campaign
-          </Link>
+            Calculate My ROI
+          </a>
         </div>
 
-        {/* Beta badge */}
-        <p className="text-sm text-gray-500 font-medium animate-slide-up px-4 py-2 rounded-full bg-white border border-purple-100 shadow-card">
-          ✨ Now in private beta — accepting founding members
-        </p>
+        {/* Stats row */}
+        <div
+          className="flex flex-wrap justify-center w-full animate-slide-up"
+          style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}
+        >
+          {stats.map((s, i) => (
+            <div
+              key={i}
+              className="px-6 sm:px-10 py-6 text-center"
+              style={{
+                borderRight: i < stats.length - 1 ? '1px solid rgba(255,255,255,0.1)' : 'none',
+              }}
+            >
+              <div
+                className="font-black leading-none text-white mb-1"
+                style={{ fontFamily: 'var(--font-syne)', fontSize: '2.4rem' }}
+              >
+                <span style={{ color: '#FF4D6D' }}>{s.num}</span>
+                {s.suffix}
+              </div>
+              <div className="text-xs tracking-wide" style={{ color: 'rgba(255,255,255,0.45)' }}>
+                {s.label}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-
-      {/* Bottom fade-out for scroll affordance */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
-        aria-hidden="true"
-        style={{
-          background: 'linear-gradient(to bottom, transparent, rgba(243,232,255,0.4))',
-        }}
-      />
     </section>
   )
 }

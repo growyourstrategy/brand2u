@@ -1,143 +1,81 @@
 'use client'
 
-import { useState } from 'react'
 import Link from 'next/link'
-
-const navLinks = [
-  { label: 'How It Works', href: '#how-it-works' },
-  { label: 'Features', href: '#features' },
-  { label: 'Pricing', href: '#pricing' },
-]
+import { useState } from 'react'
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/80 border-b border-purple-100">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 shrink-0 group">
-            <span
-              className="text-2xl leading-none select-none group-hover:scale-110 transition-transform duration-200"
-              aria-hidden="true"
-            >
-              ⚡
-            </span>
-            <span
-              className="text-2xl font-black tracking-tight"
-              style={{
-                background: 'linear-gradient(135deg, #7C3AED 0%, #EC4899 60%, #F59E0B 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-              }}
-            >
-              brand2u
-            </span>
-          </Link>
-
-          {/* Desktop nav links */}
-          <ul className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  className="text-sm font-semibold text-gray-600 hover:text-brand-purple transition-colors duration-200 relative group"
-                >
-                  {link.label}
-                  <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-brand-purple to-brand-pink rounded-full group-hover:w-full transition-all duration-300" />
-                </a>
-              </li>
-            ))}
-          </ul>
-
-          {/* Desktop CTAs */}
-          <div className="hidden md:flex items-center gap-3">
-            <Link
-              href="/dashboard"
-              className="px-4 py-2 text-sm font-bold rounded-full border-2 border-brand-purple text-brand-purple hover:bg-purple-50 transition-colors duration-200"
-            >
-              For Creators
-            </Link>
-            <Link
-              href="/dashboard?mode=brand"
-              className="px-4 py-2 text-sm font-bold rounded-full text-white shadow-brand hover:shadow-brand-lg hover:scale-105 transition-all duration-200"
-              style={{
-                background: 'linear-gradient(135deg, #7C3AED 0%, #EC4899 100%)',
-              }}
-            >
-              For Brands
-            </Link>
-          </div>
-
-          {/* Mobile hamburger */}
-          <button
-            type="button"
-            aria-label="Toggle mobile menu"
-            aria-expanded={mobileOpen}
-            onClick={() => setMobileOpen((prev) => !prev)}
-            className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-xl hover:bg-purple-50 transition-colors duration-200 gap-1.5"
-          >
-            <span
-              className={`block w-5 h-0.5 bg-gray-700 rounded-full transition-all duration-300 ${
-                mobileOpen ? 'rotate-45 translate-y-2' : ''
-              }`}
-            />
-            <span
-              className={`block w-5 h-0.5 bg-gray-700 rounded-full transition-all duration-300 ${
-                mobileOpen ? 'opacity-0 scale-x-0' : ''
-              }`}
-            />
-            <span
-              className={`block w-5 h-0.5 bg-gray-700 rounded-full transition-all duration-300 ${
-                mobileOpen ? '-rotate-45 -translate-y-2' : ''
-              }`}
-            />
-          </button>
-        </div>
-
-        {/* Mobile dropdown */}
+    <nav
+      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 py-5"
+      style={{
+        background: 'rgba(10,10,15,0.85)',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        borderBottom: '1px solid rgba(255,255,255,0.08)',
+      }}
+    >
+      {/* Logo */}
+      <Link href="/" className="flex items-center gap-2.5">
         <div
-          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-            mobileOpen ? 'max-h-80 opacity-100 pb-4' : 'max-h-0 opacity-0'
-          }`}
+          className="flex items-center justify-center w-9 h-9 rounded-[9px] text-white text-[13px] font-black"
+          style={{ background: '#FF4D6D', fontFamily: 'var(--font-syne)' }}
         >
-          <ul className="flex flex-col gap-1 pt-2">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="block px-4 py-3 text-sm font-semibold text-gray-700 hover:text-brand-purple hover:bg-purple-50 rounded-xl transition-colors duration-200"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-          <div className="flex flex-col gap-2 px-2 pt-3 border-t border-purple-100 mt-2">
-            <Link
-              href="/dashboard"
-              onClick={() => setMobileOpen(false)}
-              className="w-full text-center px-4 py-2.5 text-sm font-bold rounded-full border-2 border-brand-purple text-brand-purple hover:bg-purple-50 transition-colors duration-200"
-            >
-              For Creators
-            </Link>
-            <Link
-              href="/dashboard?mode=brand"
-              onClick={() => setMobileOpen(false)}
-              className="w-full text-center px-4 py-2.5 text-sm font-bold rounded-full text-white shadow-brand"
-              style={{
-                background: 'linear-gradient(135deg, #7C3AED 0%, #EC4899 100%)',
-              }}
-            >
-              For Brands
-            </Link>
-          </div>
+          b2u
         </div>
-      </nav>
-    </header>
+        <span
+          className="text-white text-[18px] font-bold tracking-tight"
+          style={{ fontFamily: 'var(--font-syne)' }}
+        >
+          brand<span style={{ color: '#FF4D6D' }}>2</span>u
+        </span>
+      </Link>
+
+      {/* Desktop nav */}
+      <div className="hidden md:flex items-center gap-8">
+        <a href="#calculator" className="text-sm text-white/60 hover:text-white transition-colors">ROI Calculator</a>
+        <a href="#how-it-works" className="text-sm text-white/60 hover:text-white transition-colors">How It Works</a>
+        <a href="#pricing" className="text-sm text-white/60 hover:text-white transition-colors">Pricing</a>
+        <Link
+          href="/dashboard"
+          className="text-white text-[13px] font-semibold px-5 py-2 rounded-lg transition-all hover:-translate-y-px"
+          style={{ background: '#FF4D6D', fontFamily: 'var(--font-syne)' }}
+        >
+          Start Free →
+        </Link>
+      </div>
+
+      {/* Mobile hamburger */}
+      <button
+        onClick={() => setMobileOpen(!mobileOpen)}
+        className="md:hidden p-2 text-white"
+        aria-label="Toggle menu"
+      >
+        <div className="w-5 h-0.5 bg-white mb-1.5" />
+        <div className="w-5 h-0.5 bg-white mb-1.5" />
+        <div className="w-5 h-0.5 bg-white" />
+      </button>
+
+      {/* Mobile menu */}
+      {mobileOpen && (
+        <div
+          className="absolute top-full left-0 right-0 flex flex-col gap-4 p-6"
+          style={{ background: '#14141C', borderBottom: '1px solid rgba(255,255,255,0.08)' }}
+        >
+          <a href="#calculator" className="text-sm text-white/70" onClick={() => setMobileOpen(false)}>ROI Calculator</a>
+          <a href="#how-it-works" className="text-sm text-white/70" onClick={() => setMobileOpen(false)}>How It Works</a>
+          <a href="#pricing" className="text-sm text-white/70" onClick={() => setMobileOpen(false)}>Pricing</a>
+          <Link
+            href="/dashboard"
+            className="text-white text-sm font-semibold px-5 py-3 rounded-lg text-center"
+            style={{ background: '#FF4D6D', fontFamily: 'var(--font-syne)' }}
+            onClick={() => setMobileOpen(false)}
+          >
+            Start Free →
+          </Link>
+        </div>
+      )}
+    </nav>
   )
 }

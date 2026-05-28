@@ -19,10 +19,21 @@ const config: Config = {
           mint: '#10B981',
           gold: '#F59E0B',
         },
+        b2u: {
+          pink: '#FF4D6D',
+          'pink-dark': '#CC1A3A',
+          purple: '#7B2FFF',
+          teal: '#00C9A7',
+          black: '#0A0A0F',
+          'off-black': '#14141C',
+          'gray-dark': '#2A2A35',
+          'gray-mid': '#6B6B7E',
+        },
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
-        display: ['var(--font-cal)', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-dm-sans)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-syne)', 'system-ui', 'sans-serif'],
+        syne: ['var(--font-syne)', 'system-ui', 'sans-serif'],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

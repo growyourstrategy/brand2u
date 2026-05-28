@@ -1,133 +1,127 @@
-'use client'
-
-import { useState } from 'react'
-
-type Tab = 'creator' | 'brand'
-
-interface Step {
-  number: number
-  icon: string
-  title: string
-  description: string
-}
-
-const creatorSteps: Step[] = [
+const steps = [
   {
-    number: 1,
-    icon: '🎨',
-    title: 'Build Your Profile',
-    description:
-      'Show off your niche, audience stats, rate card, and past collabs. Make brands swipe right.',
+    title: 'Create your brand profile',
+    body: "Set up your brand page in minutes — add your product, what you're selling, what kind of creator you're looking for, and the campaign budget. No account manager needed. No approval process.",
+    time: '⏱ 15 minutes',
+    accentColor: '#FF4D6D',
+    accentBg: 'rgba(255,77,109,0.15)',
+    accentBorder: 'rgba(255,77,109,0.3)',
   },
   {
-    number: 2,
-    icon: '🎯',
-    title: 'Get Matched',
-    description:
-      'Browse brand campaigns or let our algorithm match you with brands that fit your vibe.',
+    title: 'Search and filter verified creators',
+    body: "Browse by niche, platform, follower range, and — most importantly — engagement rate. Every profile shows real data pulled live from the creator's connected accounts. No guessing, no fakes.",
+    time: '⏱ 30 minutes to find the right fit',
+    accentColor: '#7B2FFF',
+    accentBg: 'rgba(123,47,255,0.15)',
+    accentBorder: 'rgba(123,47,255,0.3)',
   },
   {
-    number: 3,
-    icon: '💸',
-    title: 'Close & Get Paid',
-    description:
-      'Pitch, negotiate, sign digitally, deliver content, and get paid — all in one place.',
-  },
-]
-
-const brandSteps: Step[] = [
-  {
-    number: 1,
-    icon: '📋',
-    title: 'Post Your Brief',
-    description:
-      'Tell us your campaign goals, budget, and ideal creator type. Takes 5 minutes.',
+    title: 'Send a contract offer',
+    body: 'Use the built-in contract builder to set the deliverables, timeline, rate, and campaign length. The creator reviews and signs. Everything is documented, legally clear, and stored in the platform.',
+    time: '⏱ 10 minutes per contract',
+    accentColor: '#00C9A7',
+    accentBg: 'rgba(0,201,167,0.15)',
+    accentBorder: 'rgba(0,201,167,0.3)',
   },
   {
-    number: 2,
-    icon: '🔍',
-    title: 'Discover Creators',
-    description:
-      'Browse vetted UGC creators filtered by niche, audience size, engagement, and location.',
+    title: 'Creator delivers, you confirm',
+    body: "The creator posts the content. You review it. Once you confirm delivery, the escrow funds release automatically. If there's an issue, you have a 5-day dispute window — Brand2u mediates.",
+    time: '⏱ Zero admin — fully automated',
+    accentColor: '#FF4D6D',
+    accentBg: 'rgba(255,77,109,0.15)',
+    accentBorder: 'rgba(255,77,109,0.3)',
   },
   {
-    number: 3,
-    icon: '🚀',
-    title: 'Launch & Scale',
-    description:
-      'Approve creators, track deliverables, pay through the platform, and double down on what works.',
+    title: 'Track results and scale',
+    body: 'Your campaign dashboard shows performance across all active creator deals. See what\'s working, rate the creator, and either renew their contract or find your next one. The ROI compounds with every deal.',
+    time: '⏱ Ongoing — always improving',
+    accentColor: '#7B2FFF',
+    accentBg: 'rgba(123,47,255,0.15)',
+    accentBorder: 'rgba(123,47,255,0.3)',
   },
 ]
-
-function StepCard({ step, index, total }: { step: Step; index: number; total: number }) {
-  return (
-    <div className="relative flex flex-col items-center text-center group">
-      {/* Dashed connector line between steps — desktop only */}
-      {index < total - 1 && (
-        <div className="hidden lg:block absolute top-10 left-[calc(50%+3.5rem)] right-[calc(-50%+3.5rem)] h-px border-t-2 border-dashed border-violet-200 z-0" />
-      )}
-
-      {/* Number circle with gradient */}
-      <div className="relative z-10 flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-violet-500 to-pink-500 shadow-brand mb-4 group-hover:scale-110 transition-transform duration-300">
-        <span className="absolute -top-2 -right-2 flex items-center justify-center w-7 h-7 rounded-full bg-white border-2 border-violet-300 text-xs font-extrabold text-violet-600 shadow-sm">
-          {step.number}
-        </span>
-        <span className="text-3xl leading-none">{step.icon}</span>
-      </div>
-
-      {/* Card body */}
-      <div className="bg-white rounded-2xl shadow-card px-6 py-5 w-full max-w-xs group-hover:-translate-y-1 group-hover:shadow-card-hover transition-all duration-300">
-        <h3 className="text-lg font-bold text-gray-900 mb-2">{step.title}</h3>
-        <p className="text-sm text-gray-500 leading-relaxed">{step.description}</p>
-      </div>
-    </div>
-  )
-}
 
 export default function HowItWorks() {
-  const [activeTab, setActiveTab] = useState<Tab>('creator')
-
-  const steps = activeTab === 'creator' ? creatorSteps : brandSteps
-
   return (
-    <section id="how-it-works" className="bg-white py-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight">
-            Closing Deals Has Never Been{' '}
-            <span className="bg-gradient-to-r from-violet-600 to-pink-500 bg-clip-text text-transparent">
-              This Easy
-            </span>
-          </h2>
-          <p className="mt-4 text-lg text-gray-500 max-w-xl mx-auto">
-            From profile to paycheck in three steps.
-          </p>
-        </div>
+    <section id="how-it-works" style={{ background: '#0A0A0F', padding: '6rem 2rem' }}>
+      <div className="max-w-[1100px] mx-auto">
+        <span
+          className="block text-[11px] font-semibold tracking-[0.16em] uppercase mb-4"
+          style={{ color: '#FF4D6D', fontFamily: 'var(--font-syne)' }}
+        >
+          How it works
+        </span>
+        <h2
+          className="font-black leading-[1.1] mb-4"
+          style={{
+            fontFamily: 'var(--font-syne)',
+            fontSize: 'clamp(2rem, 3.5vw, 3rem)',
+            letterSpacing: '-1px',
+          }}
+        >
+          From sign-up to live campaign
+          <br />in{' '}
+          <em className="not-italic" style={{ color: '#FF4D6D' }}>under a day</em>
+        </h2>
+        <p
+          className="text-base leading-relaxed mb-14 max-w-[540px]"
+          style={{ color: 'rgba(255,255,255,0.55)', fontWeight: 300 }}
+        >
+          Your team can have Brand2u set up, a campaign live, and creators responding before end of business on day one.
+        </p>
 
-        {/* Tab toggle */}
-        <div className="flex justify-center mb-12">
-          <div className="inline-flex rounded-full bg-gray-100 p-1 gap-1">
-            {(['creator', 'brand'] as Tab[]).map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 ${
-                  activeTab === tab
-                    ? 'bg-gradient-to-r from-violet-600 to-pink-500 text-white shadow-md'
-                    : 'text-gray-500 hover:text-gray-700'
-                }`}
+        <div className="relative flex flex-col">
+          {/* Vertical timeline line */}
+          <div
+            className="absolute hidden md:block"
+            style={{
+              left: '27px',
+              top: '40px',
+              bottom: '40px',
+              width: '1px',
+              background: 'linear-gradient(to bottom, #FF4D6D, #7B2FFF, #00C9A7)',
+            }}
+            aria-hidden="true"
+          />
+
+          {steps.map((step, i) => (
+            <div
+              key={i}
+              className="grid grid-cols-[56px_1fr] gap-8 py-8 items-start"
+              style={{
+                borderBottom: i < steps.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none',
+              }}
+            >
+              <div
+                className="relative z-10 w-14 h-14 flex-shrink-0 rounded-full flex items-center justify-center font-black text-[1.1rem]"
+                style={{
+                  background: step.accentBg,
+                  color: step.accentColor,
+                  border: `1px solid ${step.accentBorder}`,
+                  fontFamily: 'var(--font-syne)',
+                }}
               >
-                {tab === 'creator' ? "I'm a Creator" : "I'm a Brand"}
-              </button>
-            ))}
-          </div>
-        </div>
+                {i + 1}
+              </div>
 
-        {/* Steps grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-8">
-          {steps.map((step, index) => (
-            <StepCard key={step.number} step={step} index={index} total={steps.length} />
+              <div className="pt-3">
+                <h4
+                  className="font-bold text-[1.15rem] mb-2"
+                  style={{ fontFamily: 'var(--font-syne)' }}
+                >
+                  {step.title}
+                </h4>
+                <p className="text-sm leading-relaxed max-w-[560px] mb-3" style={{ color: 'rgba(255,255,255,0.5)' }}>
+                  {step.body}
+                </p>
+                <span
+                  className="text-[0.78rem] font-semibold tracking-[0.06em] uppercase"
+                  style={{ color: 'rgba(255,255,255,0.3)', fontFamily: 'var(--font-syne)' }}
+                >
+                  {step.time}
+                </span>
+              </div>
+            </div>
           ))}
         </div>
       </div>
